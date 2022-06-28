@@ -7,9 +7,16 @@ const router = express.Router();
   Add the routes to the Express application by importing with the other imports in backend/app.js and connecting the exported router to app after all the middlewares.
  */
 
-router.get('/hello/world', (req, res) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken());
-  res.send('Hello World')
-})
+const apiRouter = require('./api');
+
+router.use('/api', apiRouter);
+
+router.get('/api/csrf/restore', (req, res) => {
+  const csrfToken = req.csrfToken();
+  res.cookie("XSRF-TOKEN", csrfToken);
+  res.send(200).json({
+    'XSRF-Token': csrfToken
+  });
+});
 
 module.exports = router;
