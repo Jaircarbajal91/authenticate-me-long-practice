@@ -58,7 +58,6 @@ app.use((_req, _res, next) => {
   next(err);
 })
 
-
 /**
   If the error that caused this error-handler to be called is an instance of ValidationError from the sequelize package, then the error was created from a Sequelize database validation error and the additional keys of title string and errors array will be added to the error and passed into the next error handling middleware
  */
@@ -70,7 +69,6 @@ app.use((err, _req, _res, next) => {
   }
   next(err);
 });
-
 
 /**
   The last error handler is for formatting all the errors before returning a JSON response. It will include the error message, the errors array, and the error stack trace (if the environment is in development) with the status code of the error message.

@@ -14,7 +14,8 @@ router.use('/api', apiRouter);
 router.get('/api/csrf/restore', (req, res) => {
   const csrfToken = req.csrfToken();
   res.cookie("XSRF-TOKEN", csrfToken);
-  res.send(200).json({
+  res.status(200)
+  res.json({
     'XSRF-Token': csrfToken
   });
 });
